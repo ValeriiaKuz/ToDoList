@@ -3,7 +3,7 @@ import {
   GET_PROJECTS_DATA_FAILED,
   GET_PROJECTS_DATA_SUCCESS,
 } from "../constants/constants";
-import { AppDispatch, AppThunkAction } from "../types/types";
+import { AppDispatch, AppThunkAction, ProjectType } from "../types/types";
 import { projectsRequest } from "../../API/api";
 
 export type TGetProjectsAction = {
@@ -28,10 +28,26 @@ export const getProjectsData = (): AppThunkAction => {
     projectsRequest()
       .then((res) => {
         if (res.status === 200) {
-          const projectsArray = Object.keys(res.data).map((key) => ({
-            id: key,
-            ...res.data[key],
-          }));
+          const projectsArray: ProjectType[] = Object.keys(res.data).map(
+            (key) => {
+              const project = {
+                id: key,
+                ...res.data[key],
+              };
+
+              if (res.data[key].tasks) {
+                project.tasks = Object.keys(res.data[key].tasks).map(
+                  (taskKey) => ({
+                    idTask: taskKey,
+                    ...res.data[key].tasks[taskKey],
+                  }),
+                );
+              }
+
+              return project;
+            },
+          );
+
           dispatch({
             type: GET_PROJECTS_DATA_SUCCESS,
             projectsData: projectsArray,

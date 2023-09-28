@@ -27,14 +27,14 @@ export type TCreateProjectActions =
 export const createProjectData = (
   name: any,
   createTime: Date,
+  logo: string,
 ): AppThunkAction => {
   return function (dispatch: AppDispatch) {
     dispatch({
       type: CREATE_PROJECT_DATA,
     });
-    createProject(name, createTime)
+    createProject(name, createTime, logo)
       .then((res) => {
-        console.log(res);
         if (res && res.status === 200) {
           dispatch({
             type: CREATE_PROJECT_SUCCESS,

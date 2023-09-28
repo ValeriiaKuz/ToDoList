@@ -5,18 +5,21 @@ import {
   createProjectData,
   deleteAfterCreation,
 } from "../../redux/actions/createProject";
-import { ChangeEvent, FormEvent, useEffect } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { LogoForm } from "./logoform";
+// @ts-ignore
 export const NewProjectForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [logo, setLogo] = useState(`&#10133;`);
   const projectNameProps = useInput("");
   const isProjectCreated = useSelector(
     (state) => state.createProject.addedProject,
   );
   const onHandleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    dispatch(createProjectData(projectNameProps.value, new Date()));
+    dispatch(createProjectData(projectNameProps.value, new Date(), logo));
     projectNameProps.onChange({
       target: { value: "" },
     } as ChangeEvent<HTMLInputElement>);
@@ -30,16 +33,19 @@ export const NewProjectForm = () => {
 
   return (
     <form className={style.formWrapper} onSubmit={onHandleSubmit}>
-      <div>
-        <span>Название проекта:</span>
+      <div className={style.inputsWrapper}>
+        <LogoForm logo={logo} setLogo={setLogo} />
         <input
           type={"text"}
           value={projectNameProps.value}
           onChange={projectNameProps.onChange}
+          placeholder={"Введите название проекта"}
           required
         />
       </div>
-      <button type={"submit"}>Создать проект</button>
+      <button type={"submit"} className={style.projectButton}>
+        Создать проект
+      </button>
     </form>
   );
 };

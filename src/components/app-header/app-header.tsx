@@ -1,4 +1,4 @@
-import { Logo } from "../logo/logo";
+import { Logo } from "../logos/logo";
 import { NavLink } from "react-router-dom";
 import style from "./app-header.module.sass";
 export const AppHeader = () => {

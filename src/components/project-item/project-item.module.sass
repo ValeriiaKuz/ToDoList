@@ -1,0 +1,19 @@
+.projectWrapper
+  display: flex
+  flex-direction: column
+  height: calc(var(--index)*6)
+  width: 100%
+  position: relative
+  z-index: 2
+  background-color: var(--BGcolor)
+  padding: calc(var(--index)*.8)
+  border-radius: 25px
+  .project
+    display: flex
+    flex-direction: row
+    align-items: center
+    gap: calc(var(--index)*1)
+    .projectName
+      font-size: calc(var(--index)*1.2)
+      font-family: "Montserrat", serif
+      font-weight: 400
