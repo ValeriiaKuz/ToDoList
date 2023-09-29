@@ -29,7 +29,7 @@ body {
   width: 360px;
   height: 360px;
   border-radius: 50%;
-  background-color:rgba(131, 58, 180, 0.6);
+  background-color:var(--AccentPurple);
   filter: blur(150px);
   z-index: 1;
 }
@@ -41,7 +41,8 @@ body {
   width: 350px;
   height: 350px;
   border-radius: 50%;
-  background-color: rgba(150, 26, 26, 0.7);
+  background-color: var(--AccentColor);
+  opacity: 0.7;
   filter: blur(200px);
   z-index: 1;
 }
@@ -49,11 +50,12 @@ body {
   --index:calc(1vh + 1vw);
   --AccentLight:#f2f7b7;
   --AccentColor:#FF3F78FF ;
-  --AccentPurple: #833AB499;
+  --AccentPurple: rgba(131, 58, 180, 0.8);
   --BGcolorLight:#151a1e;
   --BGcolor:  #0E1014;
   --shadow:0 2px 4px rgba(0,0,0,.04);
 }
+
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 html {
   line-height: 1.15; /* 1 */

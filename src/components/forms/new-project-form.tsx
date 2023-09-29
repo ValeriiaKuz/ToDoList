@@ -3,7 +3,7 @@ import { useInput } from "../../hooks/useInput";
 import { useDispatch, useSelector } from "../../hooks/hooks";
 import {
   createProjectData,
-  deleteAfterCreation,
+  deleteProjectAfterCreation,
 } from "../../redux/actions/createProject";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -26,7 +26,7 @@ export const NewProjectForm = () => {
   };
   useEffect(() => {
     if (isProjectCreated) {
-      dispatch(deleteAfterCreation());
+      dispatch(deleteProjectAfterCreation());
       navigate("/");
     }
   }, [isProjectCreated]);

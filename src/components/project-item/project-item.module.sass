@@ -1,19 +1,33 @@
 .projectWrapper
   display: flex
   flex-direction: column
-  height: calc(var(--index)*6)
   width: 100%
   position: relative
   z-index: 2
   background-color: var(--BGcolor)
   padding: calc(var(--index)*.8)
   border-radius: 25px
-  .project
+  gap: calc(var(--index)*.4)
+.project
     display: flex
     flex-direction: row
     align-items: center
     gap: calc(var(--index)*1)
-    .projectName
-      font-size: calc(var(--index)*1.2)
-      font-family: "Montserrat", serif
-      font-weight: 400
+.infoWrapper
+  display: flex
+  flex-direction: column
+  gap: calc(var(--index)*0.5)
+.projectName
+    font-size: calc(var(--index)*1.2)
+    font-family: "Montserrat", serif
+    font-weight: 400
+.projectInfo
+  display: flex
+  flex-direction: row
+  gap: calc(var(--index)*.4)
+  span
+    color: rgba(255, 255, 255, 0.5)
+    font-size: calc(var(--index)*.5)
+    background-color: var(--BGcolorLight)
+    padding: calc(var(--index)*.2) calc(var(--index)*.4)
+    border-radius: 8px

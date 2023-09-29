@@ -5,12 +5,18 @@ import { TCreateProjectActions } from "../actions/createProject";
 import { TProjectActions } from "../actions/getProject";
 import { TCreateTaskActions } from "../actions/createTask";
 import { Priority } from "../../components/forms/checkbox-form";
+import { TChangeStatusActions } from "../actions/changeStatusInProgress";
+import { TAddDoneActions } from "../actions/addDoneDate";
+import { TAddInProgressActions } from "../actions/addInProgressDate";
 
 type TApplicationActions =
   | TProjectsActions
   | TCreateProjectActions
   | TProjectActions
-  | TCreateTaskActions;
+  | TCreateTaskActions
+  | TChangeStatusActions
+  | TAddDoneActions
+  | TAddInProgressActions;
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = ThunkDispatch<
@@ -25,16 +31,25 @@ export type AppThunkAction<ReturnType = void> = ThunkAction<
   TApplicationActions
 >;
 export type TaskType = {
-  date: Date;
+  idTask: string;
+  date: string;
   desc: string;
   taskNumber: number;
   name: string;
   priority: Priority;
+  status: Status;
+  doneTime?: string;
+  startProgressTime?: string;
 };
 
 export type ProjectType = {
-  create: Date;
+  create: string;
   name: string;
   logo: string;
   tasks?: TaskType[];
 };
+export enum Status {
+  inQueue = "В очереди",
+  inProgress = "В работе",
+  done = "Завершено",
+}

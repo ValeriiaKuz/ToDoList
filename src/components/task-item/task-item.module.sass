@@ -1,0 +1,26 @@
+.taskWrapper
+  position: relative
+  display: flex
+  flex-direction: column
+  background-color: var(--BGcolorLight)
+  padding: calc(var(--index)*0.5)
+  width: 95%
+  border-radius: 8px
+  &:hover
+    box-shadow: 0 0 30px 10px rgba(241, 0, 255, 0.1)
+.name
+  font-size: calc(var(--index)*1)
+  font-family: "Montserrat", serif
+  font-weight: 400
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5)
+.desc,.date,.priority,.number,.time
+  opacity: 0.8
+  font-size: calc(var(--index)*.6)
+
+.number
+  position: absolute
+  top: calc(var(--index)*.4)
+  right: calc(var(--index)*.4)
+  padding: calc(var(--index)*.1) calc(var(--index)*.3)
+  border: 1px solid rgba(255, 255, 255, 0.5)
+  border-radius: 50%

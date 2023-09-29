@@ -2,6 +2,7 @@ import {
   CREATE_TASK_DATA,
   CREATE_TASK_FAILED,
   CREATE_TASK_SUCCESS,
+  DELETE_TASK_AFTER_CREATION,
 } from "../../constants/constants";
 import { TCreateTaskActions } from "../../actions/createTask";
 
@@ -43,7 +44,11 @@ export const createTaskReducer = (
         isLoading: false,
       };
     }
-
+    case DELETE_TASK_AFTER_CREATION: {
+      return {
+        ...initialState,
+      };
+    }
     default: {
       return state;
     }

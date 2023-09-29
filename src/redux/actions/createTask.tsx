@@ -2,8 +2,9 @@ import {
   CREATE_TASK_DATA,
   CREATE_TASK_FAILED,
   CREATE_TASK_SUCCESS,
+  DELETE_TASK_AFTER_CREATION,
 } from "../constants/constants";
-import { AppDispatch, AppThunkAction } from "../types/types";
+import { AppDispatch, AppThunkAction, Status } from "../types/types";
 import { createTask } from "../../API/api";
 import { getProjectData } from "./getProject";
 
@@ -16,11 +17,15 @@ export type TCreateTaskFailedAction = {
 export type TCreateTaskSuccessAction = {
   readonly type: typeof CREATE_TASK_SUCCESS;
 };
+export type TDeleteTaskAfterCreationAction = {
+  readonly type: typeof DELETE_TASK_AFTER_CREATION;
+};
 
 export type TCreateTaskActions =
   | TCreateTaskAction
   | TCreateTaskFailedAction
-  | TCreateTaskSuccessAction;
+  | TCreateTaskSuccessAction
+  | TDeleteTaskAfterCreationAction;
 export const createTaskData = (
   idProject: string,
   name: string,
@@ -28,12 +33,13 @@ export const createTaskData = (
   priority: string,
   date: Date,
   id: number,
+  status: Status,
 ): AppThunkAction => {
   return function (dispatch: AppDispatch) {
     dispatch({
       type: CREATE_TASK_DATA,
     });
-    createTask(idProject, name, desc, priority, date, id)
+    createTask(idProject, name, desc, priority, date, id, status)
       .then((res) => {
         if (res && res.status === 200) {
           dispatch({
@@ -52,5 +58,11 @@ export const createTaskData = (
           type: CREATE_TASK_FAILED,
         });
       });
+  };
+};
+
+export const deleteTaskAfterCreation = () => {
+  return function (dispatch: AppDispatch) {
+    dispatch({ type: DELETE_TASK_AFTER_CREATION });
   };
 };

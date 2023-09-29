@@ -4,13 +4,22 @@ import { ModalOverlay } from "./modal-overlay";
 import { useLocation, useNavigate } from "react-router-dom";
 import style from "./modal.module.sass";
 import CloseButton from "../buttons/close-button";
-export const Modal: FC<PropsWithChildren> = ({ children }) => {
+export type OnCloseType = {
+  onClose?: (isOpen: boolean) => void;
+};
+export const Modal: FC<PropsWithChildren<OnCloseType>> = ({
+  children,
+  onClose,
+}) => {
   let navigate = useNavigate();
   let location = useLocation();
   useEffect(() => {
     const escClose = (event: KeyboardEvent): void => {
       if (event.key === "Escape") {
         navigate(location.state?.background.pathname || "/");
+        if (onClose) {
+          onClose(false);
+        }
       }
     };
     document.addEventListener("keydown", escClose);
@@ -19,9 +28,12 @@ export const Modal: FC<PropsWithChildren> = ({ children }) => {
     };
   }, []);
   return ReactDOM.createPortal(
-    <ModalOverlay>
+    <ModalOverlay onClose={onClose}>
       <div className={style.modal} onClick={(e) => e.stopPropagation()}>
-        <CloseButton pathname={location.state?.background.pathname} />
+        <CloseButton
+          pathname={location.state?.background.pathname}
+          onClose={onClose}
+        />
         {children}
       </div>
     </ModalOverlay>,

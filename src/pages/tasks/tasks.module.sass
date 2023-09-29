@@ -1,3 +1,23 @@
-.contentWrapper
+
+.projectInfoWrapper
   max-width: 720px
   margin: 0 auto
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  gap: calc(var(--index)*1)
+  button
+    display: flex
+    height: max-content
+    justify-content: center
+    padding: calc(var(--index)*.4)
+    border-top: 1px solid var(--AccentColor)
+    border-bottom: 1px solid var(--AccentColor)
+    opacity: 0.3
+    &:hover
+      opacity: 1
+.columnsWrapper
+  display: flex
+  flex-direction: row
+  justify-content: space-around
+  padding: calc(var(--index)*1.2)

@@ -1,22 +1,31 @@
 import { useInput } from "../../hooks/useInput";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { CheckBoxForm } from "./checkbox-form";
 import style from "./form.module.sass";
-import { useDispatch } from "../../hooks/hooks";
-import { createTaskData } from "../../redux/actions/createTask";
+import { useDispatch, useSelector } from "../../hooks/hooks";
+import {
+  createTaskData,
+  deleteTaskAfterCreation,
+} from "../../redux/actions/createTask";
+import classNames from "classnames";
+import { Status } from "../../redux/types/types";
+
 type NewTaskFormPropsType = {
   projectId: string;
   taskId: number;
+  onClose: (isOpen: boolean) => void;
 };
 export const NewTaskForm: FC<NewTaskFormPropsType> = ({
   projectId,
   taskId,
+  onClose,
 }) => {
   const dispatch = useDispatch();
   const nameProps = useInput("");
   const descriptionProps = useInput("");
   const [priority, setPriority] = useState<string | null>(null);
   const [isWarning, setIsWarning] = useState(false);
+  const isTaskCreated = useSelector((state) => state.createTask.addedTask);
   const onHandleAddTask = () => {
     if (priority) {
       dispatch(
@@ -27,15 +36,21 @@ export const NewTaskForm: FC<NewTaskFormPropsType> = ({
           priority,
           new Date(),
           taskId,
+          Status.inQueue,
         ),
       );
     } else {
       setIsWarning(true);
     }
   };
+  useEffect(() => {
+    if (isTaskCreated) {
+      dispatch(deleteTaskAfterCreation());
+      onClose(false);
+    }
+  }, [isTaskCreated]);
   return (
     <>
-      <span>Добавить задачу:</span>
       <form onSubmit={onHandleAddTask} className={style.taskForm}>
         <input
           placeholder={"Название задачи"}
@@ -43,13 +58,14 @@ export const NewTaskForm: FC<NewTaskFormPropsType> = ({
           value={nameProps.value}
           onChange={nameProps.onChange}
           required
+          className={classNames(style.task, style.name)}
         />
-        <input
+        <textarea
           placeholder={"Описание"}
-          type={"text"}
           value={descriptionProps.value}
           onChange={descriptionProps.onChange}
           required
+          className={classNames(style.task, style.desc)}
         />
         <CheckBoxForm priority={priority} setPriority={setPriority} />
         <button type={"submit"} className={style.taskButton}>

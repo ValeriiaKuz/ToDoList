@@ -41,20 +41,54 @@ $text-color: mix(#000, $primary-color, 64%)
 .taskForm
   display: flex
   flex-direction: column
-  gap: calc(var(--index)*.5)
+  gap: calc(var(--index)*1)
+.task
+    width: calc(var(--index)*30)
+    background-color: transparent
+    outline: none
+    border: none
+    color: white
+    font-family: "Montserrat", serif
+    font-weight: 400
+    padding: calc(var(--index)*.5)
+.name
+  height: calc(var(--index)*1)
+  font-size: calc(var(--index)*.9)
+  border-bottom: 1px solid rgba(206, 210, 199, 0)
+  transition: 0.25s ease
+  &:focus
+    border-bottom: 1px solid var(--AccentPurple)
+.desc
+  height: calc(var(--index)*3)
+  font-size: calc(var(--index)*.6)
+  border: 1px solid rgba(206, 210, 199, 0.1)
+  border-radius: 4px
+  resize: none
+  transition: 0.25s ease
+  &:focus
+    border: 1px solid var(--AccentPurple)
+
 
 .taskButton
   padding: calc(var(--index)*.2) calc(var(--index)*1.5)
-  border: 2px solid $primary-color
+  border: 2px solid var(--AccentPurple)
   border-radius: 8px
-  width: calc(var(--index)*4.5)
+  width: 100%
   font-size: calc(var(--index)*1)
   color: aliceblue
   transition: 0.25s ease
   &:hover
-    background-color: $primary-color
+    background-color: var(--AccentPurple)
 
-
+//priority
+.priority
+  display: flex
+  flex-direction: column
+  gap: calc(var(--index)*.5)
+.radios
+  display: flex
+  flex-direction: row
+  justify-content: space-between
 label
   display: flex
   cursor: pointer
@@ -67,10 +101,10 @@ label
     position: absolute
     left: -9999px
     &:checked + span
-      background-color: mix(#fff, $primary-color, 84%)
+      background-color: mix(#fff, #833AB4CC, 84%)
       color: $text-color
       &:before
-        box-shadow: inset 0 0 0 0.4375em $primary-color
+        box-shadow: inset 0 0 0 0.4375em var(--AccentPurple)
 
   span
     display: flex
@@ -79,7 +113,7 @@ label
     border-radius: 99em
     transition: 0.25s ease
     &:hover
-      background-color: mix(#fff, $primary-color, 84%)
+      background-color: mix(#fff, #833AB4CC, 84%)
       color: $text-color
 
     &:before
@@ -92,7 +126,7 @@ label
       border-radius: 50%
       margin-right: 0.375em
       transition: 0.25s ease
-      box-shadow: inset 0 0 0 0.125em $primary-color
+      box-shadow: inset 0 0 0 0.125em var(--AccentPurple)
 
 .contentWrapper
   position: relative

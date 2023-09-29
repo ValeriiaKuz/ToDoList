@@ -53,7 +53,7 @@ export const createProjectData = (
       });
   };
 };
-export const deleteAfterCreation = () => {
+export const deleteProjectAfterCreation = () => {
   return function (dispatch: AppDispatch) {
     dispatch({ type: DELETE_AFTER_CREATION });
   };
