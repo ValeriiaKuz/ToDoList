@@ -1,7 +1,8 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import style from "./app-header.module.sass";
 import { Search } from "../search/search";
 export const AppHeader = () => {
+  const location = useLocation();
   return (
     <header className={style.header}>
       <nav>
@@ -11,7 +12,7 @@ export const AppHeader = () => {
           </li>
         </ul>
       </nav>
-      <Search />
+      {location.pathname.includes("-") && <Search />}
     </header>
   );
 };
