@@ -21,31 +21,6 @@ body {
   font-size: 16px;
   font-weight: 400;
 }
-#root::before{
-  content: '';
-  position: absolute;
-  top: -154px;
-  left: 700px;
-  width: 360px;
-  height: 360px;
-  border-radius: 50%;
-  background-color:var(--AccentPurple);
-  filter: blur(150px);
-  z-index: 1;
-}
-#root::after{
-  content: '';
-  position: absolute;
-  top: 250px;
-  left: -100px;
-  width: 350px;
-  height: 350px;
-  border-radius: 50%;
-  background-color: var(--AccentColor);
-  opacity: 0.7;
-  filter: blur(200px);
-  z-index: 1;
-}
 :root{
   --index:calc(1vh + 1vw);
   --AccentLight:#f2f7b7;
@@ -54,6 +29,33 @@ body {
   --BGcolorLight:#151a1e;
   --BGcolor:  #0E1014;
   --shadow:0 2px 4px rgba(0,0,0,.04);
+}
+
+
+:root::before{
+  content: '';
+  position: absolute;
+  top: -10vh;
+  left: 55vw;
+  width: 30vw;
+  height: 35vh;
+  border-radius: 50%;
+  background-color:#833AB4CC;
+  filter: blur(150px);
+  z-index: 1;
+}
+#root::before{
+  content: '';
+  position: absolute;
+  top: 35vh;
+  left: -12vw;
+  width: 30vw;
+  height: 35vh;
+  border-radius: 50%;
+  background-color: #FF3F78FF;
+  opacity: 0.7;
+  filter: blur(200px);
+  z-index: 1;
 }
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */

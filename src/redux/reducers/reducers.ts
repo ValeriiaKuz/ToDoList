@@ -5,6 +5,7 @@ import { projectReducer } from "./projects/getProject";
 import { createTaskReducer } from "./tasks/createTask";
 import { changeStatusReducer } from "./tasks/changeStatusInProgress";
 import { addDoneDateReducer } from "./tasks/addDoneDate";
+import { SetSearchValueReducer } from "./search/setSearchValue";
 
 export const rootReducer = combineReducers({
   projects: projectsReducer,
@@ -13,4 +14,5 @@ export const rootReducer = combineReducers({
   createTask: createTaskReducer,
   changedStatus: changeStatusReducer,
   addedDoneDate: addDoneDateReducer,
+  searchValue: SetSearchValueReducer,
 });

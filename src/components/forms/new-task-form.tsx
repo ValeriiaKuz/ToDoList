@@ -1,5 +1,5 @@
 import { useInput } from "../../hooks/useInput";
-import { FC, useEffect, useState } from "react";
+import { FC, FormEvent, useEffect, useState } from "react";
 import { CheckBoxForm } from "./checkbox-form";
 import style from "./form.module.sass";
 import { useDispatch, useSelector } from "../../hooks/hooks";
@@ -26,7 +26,8 @@ export const NewTaskForm: FC<NewTaskFormPropsType> = ({
   const [priority, setPriority] = useState<string | null>(null);
   const [isWarning, setIsWarning] = useState(false);
   const isTaskCreated = useSelector((state) => state.createTask.addedTask);
-  const onHandleAddTask = () => {
+  const onHandleAddTask = (e: FormEvent) => {
+    e.preventDefault();
     if (priority) {
       dispatch(
         createTaskData(

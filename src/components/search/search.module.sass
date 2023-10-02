@@ -1,0 +1,28 @@
+.searchForm
+  display: flex
+  flex-direction: row
+  width: calc(var(--index)*20)
+  z-index: 3
+  position: relative
+  input
+    width: 100%
+    background-color: transparent
+    border: none
+    outline: none
+    color: white
+    border-bottom: 1px solid var(--AccentColor)
+    opacity: 0.4
+    padding: 0 calc(var(--index)*1.5)
+    &:focus
+      border-bottom: 1px solid var(--AccentColor)
+      opacity: 0.8
+  img
+    width: calc(var(--index)*1.6)
+.delete
+  font-size: calc(var(--index)*.7)
+  position: absolute
+  left: 0
+  top: calc(var(--index)*.5)
+  cursor: pointer
+  &:hover
+    color: var(--AccentColor)

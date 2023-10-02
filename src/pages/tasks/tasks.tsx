@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import { getProjectData } from "../../redux/actions/getProject";
 import { NewTaskForm } from "../../components/forms/new-task-form";
 import style from "./tasks.module.sass";
-import { ProjectType, Status } from "../../redux/types/types";
+import { ProjectType, Status, TaskType } from "../../redux/types/types";
 import { ProjectItem } from "../../components/project-item/project-item";
 import { Modal } from "../../components/modal/modal";
 import { TasksColumn } from "../../components/tasks-column/tasks-column";
@@ -31,23 +31,38 @@ export const Tasks = () => {
     dispatch(getProjectData(location.pathname));
   }, [isCreatedNewTask, isStatusChanged]);
   const [isOpenForm, setIsOpenForm] = useState(false);
-
-  const { taskInQueue, taskInProgress, doneTask } = useMemo(() => {
+  const searchValue = useSelector((state) => state.searchValue.searchValue);
+  const tasksAfterSearch = (): Array<TaskType> => {
+    return (
+      project.tasks?.filter(
+        (task) =>
+          task.taskNumber.toString().includes(searchValue) ||
+          task.name.toLowerCase().includes(searchValue.toLowerCase()),
+      ) || []
+    );
+  };
+  const [tasks, setTasks] = useState<Array<TaskType>>([]);
+  useEffect(() => {
     if (project && project.tasks) {
-      const taskInQueue = project.tasks.filter((task) => {
+      setTasks(searchValue ? tasksAfterSearch() : project.tasks);
+    }
+  }, [project, searchValue]);
+  const { taskInQueue, taskInProgress, doneTask } = useMemo(() => {
+    if (project && tasks) {
+      const taskInQueue = tasks.filter((task) => {
         return task.status === Status.inQueue;
       });
-      const taskInProgress = project.tasks.filter((task) => {
+      const taskInProgress = tasks.filter((task) => {
         return task.status === Status.inProgress;
       });
-      const doneTask = project.tasks.filter((task) => {
+      const doneTask = tasks.filter((task) => {
         return task.status === Status.done;
       });
       return { taskInQueue, taskInProgress, doneTask };
     } else {
       return { taskInQueue: [], taskInProgress: [], doneTask: [] };
     }
-  }, [project]);
+  }, [project, tasks]);
   if (isLoading) {
     return <Preloader />;
   }
@@ -55,7 +70,7 @@ export const Tasks = () => {
     return <Error />;
   }
   if (!project) {
-    return <Error />;
+    return <Preloader />;
   }
   return (
     <div className={style.contentWrapper}>
@@ -66,7 +81,7 @@ export const Tasks = () => {
             setIsOpenForm(!isOpenForm);
           }}
         >
-          + Добавить задачу
+          <span>+ Добавить задачу</span>
         </button>
       </div>
       {isOpenForm && (

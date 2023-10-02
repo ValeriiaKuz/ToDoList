@@ -8,6 +8,7 @@ import { Priority } from "../../components/forms/checkbox-form";
 import { TChangeStatusActions } from "../actions/changeStatusInProgress";
 import { TAddDoneActions } from "../actions/addDoneDate";
 import { TAddInProgressActions } from "../actions/addInProgressDate";
+import { TSetSearchValueAction } from "../actions/setSearchValue";
 
 type TApplicationActions =
   | TProjectsActions
@@ -16,7 +17,8 @@ type TApplicationActions =
   | TCreateTaskActions
   | TChangeStatusActions
   | TAddDoneActions
-  | TAddInProgressActions;
+  | TAddInProgressActions
+  | TSetSearchValueAction;
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = ThunkDispatch<
