@@ -4,7 +4,7 @@ import {
   ADD_DONE_DATE_DATA_FAILED,
 } from "../constants/constants";
 import { AppDispatch, AppThunkAction } from "../types/types";
-import { addDoneDate } from "../../API/api";
+import { addDoneDate } from "../../../API/api";
 
 export type TAddDoneAction = {
   readonly type: typeof ADD_DONE_DATE_DATA;

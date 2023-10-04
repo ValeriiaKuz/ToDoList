@@ -4,11 +4,11 @@ import { store } from "../store";
 import { TCreateProjectActions } from "../actions/createProject";
 import { TProjectActions } from "../actions/getProject";
 import { TCreateTaskActions } from "../actions/createTask";
-import { Priority } from "../../components/forms/checkbox-form";
 import { TChangeStatusActions } from "../actions/changeStatusInProgress";
 import { TAddDoneActions } from "../actions/addDoneDate";
 import { TAddInProgressActions } from "../actions/addInProgressDate";
 import { TSetSearchValueAction } from "../actions/setSearchValue";
+import { Priority } from "../../../components/forms/checkbox-form";
 
 type TApplicationActions =
   | TProjectsActions
@@ -45,6 +45,7 @@ export type TaskType = {
 };
 
 export type ProjectType = {
+  id: string;
   create: string;
   name: string;
   logo: string;

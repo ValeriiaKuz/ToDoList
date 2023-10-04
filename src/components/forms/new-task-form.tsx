@@ -3,12 +3,13 @@ import { FC, FormEvent, useEffect, useState } from "react";
 import { CheckBoxForm } from "./checkbox-form";
 import style from "./form.module.sass";
 import { useDispatch, useSelector } from "../../hooks/hooks";
+
+import classNames from "classnames";
 import {
   createTaskData,
   deleteTaskAfterCreation,
-} from "../../redux/actions/createTask";
-import classNames from "classnames";
-import { Status } from "../../redux/types/types";
+} from "../../servicies/redux/actions/createTask";
+import { Status } from "../../servicies/redux/types/types";
 
 type NewTaskFormPropsType = {
   projectId: string;

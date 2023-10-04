@@ -4,7 +4,7 @@ import {
   CHANGE_STATUS_DATA_SUCCESS,
 } from "../constants/constants";
 import { AppDispatch, AppThunkAction, Status } from "../types/types";
-import { changeStatus } from "../../API/api";
+import { changeStatus } from "../../../API/api";
 
 export type TChangeStatusAction = {
   readonly type: typeof CHANGE_STATUS_DATA;

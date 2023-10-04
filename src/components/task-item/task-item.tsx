@@ -1,10 +1,10 @@
-import { Status, TaskType } from "../../redux/types/types";
 import { FC } from "react";
 import style from "./task-item.module.sass";
 import { Priority } from "../forms/checkbox-form";
 import { TimeInProgress } from "./time-in-progress";
 import { useDrag } from "react-dnd";
 import { DoneTime } from "./done-time";
+import { Status, TaskType } from "../../servicies/redux/types/types";
 export const TaskItem: FC<{ task: TaskType }> = ({ task }) => {
   const createDate = new Date(task.date);
   const priorityColor = () => {

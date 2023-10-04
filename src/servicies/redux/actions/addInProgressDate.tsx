@@ -1,10 +1,10 @@
 import { AppDispatch, AppThunkAction } from "../types/types";
-import { addInProgressDate } from "../../API/api";
 import {
   ADD_IN_PROGRESS_DATE_DATA,
   ADD_IN_PROGRESS_DATE_DATA_FAILED,
   ADD_IN_PROGRESS_DATE_DATA_SUCCESS,
 } from "../constants/constants";
+import { addInProgressDate } from "../../../API/api";
 
 export type TAddInProgressAction = {
   readonly type: typeof ADD_IN_PROGRESS_DATE_DATA;

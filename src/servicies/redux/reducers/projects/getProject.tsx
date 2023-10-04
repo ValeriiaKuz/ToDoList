@@ -4,9 +4,10 @@ import {
   GET_PROJECT_DATA_SUCCESS,
 } from "../../constants/constants";
 import { TProjectActions } from "../../actions/getProject";
+import { ProjectType } from "../../types/types";
 
 export type TProjectState = {
-  projectData: any;
+  projectData: ProjectType | null;
   isLoading: boolean;
   isError: boolean;
 };

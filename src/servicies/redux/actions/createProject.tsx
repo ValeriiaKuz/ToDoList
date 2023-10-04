@@ -5,7 +5,7 @@ import {
   DELETE_AFTER_CREATION,
 } from "../constants/constants";
 import { AppDispatch, AppThunkAction } from "../types/types";
-import { createProject } from "../../API/api";
+import { createProject } from "../../../API/api";
 
 export type TCreateProjectAction = {
   readonly type: typeof CREATE_PROJECT_DATA;

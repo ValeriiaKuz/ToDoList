@@ -4,7 +4,7 @@ import {
   GET_PROJECT_DATA_SUCCESS,
 } from "../constants/constants";
 import { AppDispatch, AppThunkAction, ProjectType } from "../types/types";
-import { projectRequest } from "../../API/api";
+import { projectRequest } from "../../../API/api";
 
 export type TGetProjectAction = {
   readonly type: typeof GET_PROJECT_DATA;
@@ -36,6 +36,7 @@ export const getProjectData = (id: string): AppThunkAction => {
             dispatch({
               type: GET_PROJECT_DATA_SUCCESS,
               projectData: {
+                id: id,
                 create: res.data.create,
                 name: res.data.name,
                 logo: res.data.logo,

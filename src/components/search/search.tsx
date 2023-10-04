@@ -2,8 +2,8 @@ import { useInput } from "../../hooks/useInput";
 import { ChangeEvent, FormEvent } from "react";
 import search from "../../images/search.svg";
 import { useDispatch } from "../../hooks/hooks";
-import { SetSearchValue } from "../../redux/actions/setSearchValue";
 import style from "./search.module.sass";
+import { SetSearchValue } from "../../servicies/redux/actions/setSearchValue";
 export const Search = () => {
   const searchInput = useInput("");
   const dispatch = useDispatch();

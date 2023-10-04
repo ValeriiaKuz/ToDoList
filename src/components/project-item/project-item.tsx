@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { ProjectLogo } from "../logos/project-logo";
-import { ProjectType } from "../../redux/types/types";
 import style from "./project-item.module.sass";
 import { ProjectName } from "./project-name";
+import { ProjectType } from "../../servicies/redux/types/types";
 
 type ProjectPropsType = {
   project: ProjectType;

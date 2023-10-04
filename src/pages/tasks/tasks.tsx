@@ -2,10 +2,8 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "../../hooks/hooks";
 import { useEffect, useMemo, useState } from "react";
-import { getProjectData } from "../../redux/actions/getProject";
 import { NewTaskForm } from "../../components/forms/new-task-form";
 import style from "./tasks.module.sass";
-import { ProjectType, Status, TaskType } from "../../redux/types/types";
 import { ProjectItem } from "../../components/project-item/project-item";
 import { Modal } from "../../components/modal/modal";
 import { TasksColumn } from "../../components/tasks-column/tasks-column";
@@ -13,12 +11,18 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
 import { Preloader } from "../../components/preloader/preloader";
 import { Error } from "../../components/error/error";
+import {
+  ProjectType,
+  Status,
+  TaskType,
+} from "../../servicies/redux/types/types";
+import { getProjectData } from "../../servicies/redux/actions/getProject";
 
 export const Tasks = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   location.state = { background: location };
-  const project: ProjectType = useSelector(
+  const project: ProjectType | null = useSelector(
     (state) => state.project.projectData,
   );
   const { isError, isLoading } = useSelector((state) => state.project);
@@ -34,7 +38,7 @@ export const Tasks = () => {
   const searchValue = useSelector((state) => state.searchValue.searchValue);
   const tasksAfterSearch = (): Array<TaskType> => {
     return (
-      project.tasks?.filter(
+      project?.tasks?.filter(
         (task) =>
           task.taskNumber.toString().includes(searchValue) ||
           task.name.toLowerCase().includes(searchValue.toLowerCase()),

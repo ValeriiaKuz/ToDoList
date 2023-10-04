@@ -1,12 +1,12 @@
 import style from "./task-column.module.sass";
 import { FC } from "react";
-import { Status, TaskType } from "../../redux/types/types";
 import { TaskItem } from "../task-item/task-item";
 import { useDrop } from "react-dnd";
 import { useDispatch } from "../../hooks/hooks";
-import { changeStatusData } from "../../redux/actions/changeStatusInProgress";
-import { addDoneDateData } from "../../redux/actions/addDoneDate";
-import { addInProgressDateData } from "../../redux/actions/addInProgressDate";
+import { Status, TaskType } from "../../servicies/redux/types/types";
+import { changeStatusData } from "../../servicies/redux/actions/changeStatusInProgress";
+import { addInProgressDateData } from "../../servicies/redux/actions/addInProgressDate";
+import { addDoneDateData } from "../../servicies/redux/actions/addDoneDate";
 
 export const TasksColumn: FC<{
   tasks: TaskType[];
@@ -14,7 +14,7 @@ export const TasksColumn: FC<{
   projectId: string;
 }> = ({ tasks, title, projectId }) => {
   const dispatch = useDispatch();
-  const [{ isOver }, drop] = useDrop({
+  const [, drop] = useDrop({
     accept: "task",
     drop: (item: { task: TaskType }) => {
       if (title === Status.inProgress && item.task.status === Status.inQueue) {

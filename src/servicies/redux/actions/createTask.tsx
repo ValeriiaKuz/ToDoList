@@ -5,8 +5,8 @@ import {
   DELETE_TASK_AFTER_CREATION,
 } from "../constants/constants";
 import { AppDispatch, AppThunkAction, Status } from "../types/types";
-import { createTask } from "../../API/api";
 import { getProjectData } from "./getProject";
+import { createTask } from "../../../API/api";
 
 export type TCreateTaskAction = {
   readonly type: typeof CREATE_TASK_DATA;

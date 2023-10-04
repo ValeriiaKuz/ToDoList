@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Status } from "../redux/types/types";
+import { Status } from "../servicies/redux/types/types";
 
 export const baseURL =
   "https://todo-64cdf-default-rtdb.europe-west1.firebasedatabase.app/";

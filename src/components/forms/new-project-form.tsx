@@ -1,13 +1,14 @@
 import style from "./form.module.sass";
 import { useInput } from "../../hooks/useInput";
 import { useDispatch, useSelector } from "../../hooks/hooks";
-import {
-  createProjectData,
-  deleteProjectAfterCreation,
-} from "../../redux/actions/createProject";
+
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LogoForm } from "./logoform";
+import {
+  createProjectData,
+  deleteProjectAfterCreation,
+} from "../../servicies/redux/actions/createProject";
 // @ts-ignore
 export const NewProjectForm = () => {
   const navigate = useNavigate();
